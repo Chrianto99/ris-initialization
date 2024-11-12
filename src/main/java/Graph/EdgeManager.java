@@ -21,7 +21,6 @@ public class EdgeManager {
 
     public void initializeEdges() {
 
-
         double length;
         for (Node start : g.allNodes) {
             for (Node end : g.allNodes) {
@@ -30,7 +29,6 @@ public class EdgeManager {
                 boolean condition2 = end.type != "Tx";
                 boolean condition3 = start.type != "Rx";
                 boolean condition4 = !(start.type.equals("Tx") && end.type.equals("Rx"));
-                if (end.type.equals("Rx") && start.type.equals("Tx")) System.out.println(condition4);
                 //boolean condition5 = checkIfCouplingPossible(calculateVector(start,end),start.normalVector);
                 //boolean condition6 = checkIfCouplingPossible(calculateVector(end,start),start.normalVector);
                 if (condition1 && condition2 && condition3 && condition4) {
@@ -39,9 +37,10 @@ public class EdgeManager {
                     Edge newEdge = new Edge(start,end,edgeIdx,length);
 
                     if (start.type.equals("Tx"))
-                        newEdge.pathLoss = (g.transmitter.power * g.transmitter.gain) / (Math.pow(4 * Math.PI / g.wavelength,2) * Math.pow(length,g.alpha));
+                        newEdge.pathLoss = (g.transmitter.gain) / (Math.pow(4 * Math.PI / g.wavelength,2) * Math.pow(length,g.alpha));
                     else
                         newEdge.pathLoss = g.Gris / (Math.pow(4 * Math.PI / g.wavelength,2) * Math.pow(length,g.alpha));
+
 
                     newEdge.blocked = calculateLineOfSightPropability(start,end);
                     g.allEdges.add(newEdge);
@@ -135,7 +134,7 @@ public class EdgeManager {
     public static double calculateDistance(Node start,Node end) {
 
         double dx = Math.pow((end.x - start.x),2);
-        double dy = Math.pow((end.y - start.x),2);
+        double dy = Math.pow((end.y - start.y),2);
         double dz = Math.pow((end.z - start.z),2);
         double distance = Math.sqrt(dx + dy + dz);
 

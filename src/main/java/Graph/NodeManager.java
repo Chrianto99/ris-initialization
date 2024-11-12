@@ -114,13 +114,13 @@ public class NodeManager {
         }
 
 
+
         g.transmitter.setPosition(g.rand.nextDouble() * g.roomX, g.rand.nextDouble() * g.roomY, g.rand.nextDouble() * g.roomZ);
         while (!NodeIsFarEnough(g.transmitter)) g.transmitter.setPosition(g.rand.nextDouble() * g.roomX, g.rand.nextDouble() * g.roomY, g.rand.nextDouble() * g.roomZ);
         g.transmitter.idx = nodeId;
         g.allNodes.add(g.transmitter);
         nodeId++;
 
-        // Ensures at least 2 transmitters
         int receiverCounter = 0;
         while (receiverCounter < g.numReceivers){
 
@@ -143,55 +143,20 @@ public class NodeManager {
     }
 
     public boolean NodeIsFarEnough(Node newNode){
-        for (Node node : g.allNodes){
-            if (EdgeManager.calculateDistance(node,newNode) < 0.5){
 
+        for (Node node : g.allNodes){
+            double length = EdgeManager.calculateDistance(node,newNode);
+            double pathLoss;
+
+            pathLoss = g.Gris / (Math.pow(4 * Math.PI / g.wavelength,2) * Math.pow(length,g.alpha));
+
+            if (pathLoss > 1) {
                 return false;
             }
+
+
         }
         return true;
     }
-
-
-
-//    public void initializeNodes(){
-//
-//        initializeTiles(g.surfaces);
-//
-//        for (Node Tx : g.transmitters) {
-//            Tx.idx = nodeIdx;
-//            g.allNodes.add(Tx);
-//            nodeIdx++;
-//
-//        }
-//
-//        g.Rx.idx = nodeIdx;
-//        g.allNodes.add(g.Rx);
-//
-//
-//
-//    }
-
-//    public void initializeTiles(ArrayList<Ris> surfaces){
-//
-//        for (Ris ra : surfaces) {
-//            int k = 0,j = 0;
-//            for (int i = 0 ; i < ra.numberOfElements; i++) {
-//
-//                if (j == 8) {
-//                    k++;
-//                    j = 0;
-//                }
-//                Node tile = new Tile(nodeIdx,ra.idx,"Tile");
-//                tile.setPosition(ra.x + j*ra.element_size , ra.y , ra.z + k * ra.element_size);
-//                tile.size = ra.element_size;
-//                j++;
-//                g.allNodes.add(tile);
-//                g.allTiles.add(tile);
-//                nodeIdx++;
-//
-//            }
-//        }
-//    }
 
 }

@@ -30,6 +30,7 @@ public class RadiationManager {
                 int edgeId = g.transmitter.allOutputLinks.get(g.rand.nextInt(numOutputLinks));
 
                 Edge edge = g.allEdges.get(edgeId);
+                if (edge.end_idx > g.numberOfTiles) continue;
                 whileCounter++;
                 if (whileCounter > 20) break;
 

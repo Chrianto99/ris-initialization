@@ -22,7 +22,7 @@ public class JsonFileManager {
 		
 		       
         // Write JSON to file
-        try (FileWriter writer = new FileWriter("C:/Users/Chris/Documents/GraphsMIMO/" + name +".json")) {
+        try (FileWriter writer = new FileWriter( name +".json")) {
             writer.write(json);
             System.out.println("JSON written to output.json successfully!");
         } catch (IOException e) {

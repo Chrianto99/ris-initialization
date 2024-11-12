@@ -42,7 +42,6 @@ public class RandomEventManager {
                     Edge edge = g.allEdges.get(edgeId);
                     if (g.allNodes.get(edge.end_idx).type.equals("Rx")) {
                         if (rand.nextDouble() < multiPathFactor) edge_idx = edgeId;
-
                     }
                     flag = false;
                 }

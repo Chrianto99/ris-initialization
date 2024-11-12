@@ -32,15 +32,6 @@ public class Router {
 
 		rM.radiate();
 
-		//int numOutputLinks = g.transmitter.allOutputLinks.size();
-		//for (int i = 0; i < g.numberOfModes;i++){
-		//	int[] mode = new int[Math.min(g.transmitter.numberOfLobes,numOutputLinks)];
-		//	for (int j = 0; j < mode.length; j++){
-		//		int edgeId = g.transmitter.allOutputLinks.get(g.rand.nextInt(numOutputLinks));
-		//		mode[j] = edgeId;
-		//	}
-		//	g.transmitterModes.add(mode);
-		//}
 
 		for (Node n : nodes) {
 
