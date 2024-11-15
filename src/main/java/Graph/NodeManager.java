@@ -52,6 +52,8 @@ public class NodeManager {
 
     public void initializeNodes() {
         int nodeId = 0;
+
+        // Set SDMs
         List<Tile> tiles = new ArrayList<>();
         for (Surface sur : g.roomSurfaces) {
             double Vx = 0,Vy = 0,Vz = 0;
@@ -114,13 +116,14 @@ public class NodeManager {
         }
 
 
-
+        //Set transmitter
         g.transmitter.setPosition(g.rand.nextDouble() * g.roomX, g.rand.nextDouble() * g.roomY, g.rand.nextDouble() * g.roomZ);
         while (!NodeIsFarEnough(g.transmitter)) g.transmitter.setPosition(g.rand.nextDouble() * g.roomX, g.rand.nextDouble() * g.roomY, g.rand.nextDouble() * g.roomZ);
         g.transmitter.idx = nodeId;
         g.allNodes.add(g.transmitter);
         nodeId++;
 
+        // Set receivers
         int receiverCounter = 0;
         while (receiverCounter < g.numReceivers){
 
@@ -142,7 +145,8 @@ public class NodeManager {
 
     }
 
-    public boolean NodeIsFarEnough(Node newNode){
+    public boolean NodeIsFarEnough(Node newNode){ // Makes sure that a new node is poisioned far enough from all others
+        //the min distance makes sure Fris equation does not introduce gain(near field formula would be more accurate)
 
         for (Node node : g.allNodes){
             double length = EdgeManager.calculateDistance(node,newNode);

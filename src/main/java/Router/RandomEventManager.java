@@ -12,7 +12,6 @@ public class RandomEventManager {
 
     Graph g;
     int loss;
-
     double multiPathFactor;
 
 
@@ -25,27 +24,19 @@ public class RandomEventManager {
 
     public double[][] pickEdges(Node start, double[][] distribution, Integer inputLink) {
 
-        Random rand = new Random();
+
+
         Edge inputEdge = g.allEdges.get(inputLink);
         ArrayList<Integer> newEdges = new ArrayList<Integer>();
 
         int counter = 0;
+        loss =  20 + g.rand.nextInt(80); //routing losses ranging from 50 to 100
+        //** actual loss is the opposite (100 - loss)**
         int r;
 
-
-        boolean flag = true;
         while (counter < distribution[1].length) {
-            r = rand.nextInt(start.allOutputLinks.size());// pick random edge idx
+            r = g.rand.nextInt(start.allOutputLinks.size());// pick random edge idx
             Integer edge_idx = start.allOutputLinks.get(r);
-            if (flag) {
-                for (int edgeId : start.allOutputLinks) {
-                    Edge edge = g.allEdges.get(edgeId);
-                    if (g.allNodes.get(edge.end_idx).type.equals("Rx")) {
-                        if (rand.nextDouble() < multiPathFactor) edge_idx = edgeId;
-                    }
-                    flag = false;
-                }
-            }
 
             if (newEdges.contains(edge_idx)) { // Ensure not to pick the same edge twice
                 continue;

@@ -30,7 +30,7 @@ public class Router {
 		ArrayList<Node> nodes = g.getNodes("Tile");
 		RadiationManager rM = new RadiationManager(g);
 
-		rM.radiate();
+		rM.radiate(); // create initial Rays
 
 
 		for (Node n : nodes) {
@@ -39,7 +39,6 @@ public class Router {
 			//RoutingTable rTgpu = new RoutingTable();
 
 			for (Integer inputLink : n.allInputLinks) {
-
 				//InputEdgeBlock block = new InputEdgeBlock();
 				createModes(inputLink, n, rT); //create all modes for one input link
 

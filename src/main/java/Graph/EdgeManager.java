@@ -54,7 +54,8 @@ public class EdgeManager {
     }
 
     public boolean calculateLineOfSightPropability(Node start,Node end){
-
+        //LOS probability is calculated according to ITU model
+        //formula parameters as randomized
         double dA = 2;
         double decayParameter = 50;
         double b = 0.2;
@@ -95,7 +96,7 @@ public class EdgeManager {
         return true;
     }
 
-    public static double[] calculateVector(Node start,Node end){
+    public static double[] calculateVector(Node start,Node end){ //Not used yet
 
         double Vx = 0,Vy = 0,Vz = 0;
         Vx = end.x - start.x;
@@ -106,7 +107,7 @@ public class EdgeManager {
 
     }
 
-    public static boolean checkIfCouplingPossible(double[] V1, double[] V2) {
+    public static boolean checkIfCouplingPossible(double[] V1, double[] V2) { //Not used yetΕπισι
         // Calculate the dot product
         double dotProduct = V1[0] * V2[0] + V1[1] * V2[1] + V1[2] * V2[2];
 

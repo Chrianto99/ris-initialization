@@ -10,7 +10,7 @@ public class Graph {
 	public List<Edge> allEdges = new ArrayList<>();
 	public List<Node> allNodes = new ArrayList<>();
 	public List<Ray> inputRays = new ArrayList<>();
-	public List<int[]> transmitterModes = new ArrayList<>();
+
 	public HashMap<Integer,HashMap<String,double[][]>> routingTables = new HashMap<>();
 	public int numberOfModes;
 	public int numberOfTiles;
@@ -47,9 +47,10 @@ public class Graph {
 		nodeManager.intiantiateSurfaces();
 		nodeManager.initializeNodes();
 		edgeManager.initializeEdges();
-		int loss = 90;
-		double multipathFactor = rand.nextDouble();
-		RandomEventManager rEM = new RandomEventManager(this,loss,multipathFactor);
+		int loss = 90; //
+
+		RandomEventManager rEM = new RandomEventManager(this,loss,0);
+
 		Router router = new Router(this,rEM);
 		router.initializeRoutingTables();
 
