@@ -1,75 +1,104 @@
 package Graph;
+
 import java.util.*;
 
+import Helpers.VectorOperator;
 import Node.*;
+import Propagation.RadiationHandler;
 import Propagation.Ray;
+import RoomGeometry.Room;
+import RoomGeometry.RoomHandler;
 import Router.*;
 
 public class Graph {
-	
-	public List<Edge> allEdges = new ArrayList<>();
-	public List<Node> allNodes = new ArrayList<>();
-	public List<Ray> inputRays = new ArrayList<>();
 
-	public HashMap<Integer,HashMap<String,double[][]>> routingTables = new HashMap<>();
-	public int numberOfModes;
-	public int numberOfTiles;
-	public double wavelength,Gris,alpha;
-	public Tx transmitter;
-	public int numReceivers;
-
-	transient public double roomX;
-	transient public double roomY;
-	transient public double roomZ;
-	transient public Random rand;
-	transient public List<Surface> roomSurfaces = new ArrayList<>();
+    public List<Edge> allEdges = new ArrayList<>();
+    public List<Node> allNodes = new ArrayList<>();
+    transient public List<Ray> inputRays = new ArrayList<>();
+    public List<double[]> routingTables = new ArrayList<>();
+    public TxConfig txConfig;
+    public TileConfig tileConfig;
+    public Room room;
 
 
-
-	public Graph(int numberOfTiles,int numberOfModes,double roomX,double roomY,double roomZ,double wavelength,Tx transmitter,double Gris,int numReceivers,double alpha,Random rand) {
-
-		this.alpha = alpha;
-		this.wavelength = wavelength;
-		this.Gris = Gris;
-		this.transmitter = transmitter;
-		this.numReceivers = numReceivers;
-
-		this.roomX = roomX;
-		this.roomY = roomY;
-		this.roomZ = roomZ;
-		this.numberOfTiles = numberOfTiles;
-		this.numberOfModes = numberOfModes;
-		this.rand = rand;
+    public transient int numberOfModes = 20;
+    transient public Random rand;
+    transient public boolean graphCreationAborted = false;
 
 
-		EdgeManager edgeManager = new EdgeManager(this);
-		NodeManager nodeManager = new NodeManager(this);
-		nodeManager.intiantiateSurfaces();
-		nodeManager.initializeNodes();
-		edgeManager.initializeEdges();
-		int loss = 90; //
+    public Graph(Room room, TxConfig txConfig, TileConfig tileConfig) {
 
-		RandomEventManager rEM = new RandomEventManager(this,loss,0);
+        this.room = room;
+        this.txConfig = txConfig;
+        this.tileConfig = tileConfig;
+        rand = new Random(System.currentTimeMillis());
 
-		Router router = new Router(this,rEM);
-		router.initializeRoutingTables();
+        // Step 1: Randomly position SDMs (Tiles) on room walls. Position transmitter and users on random positions
+        // inside the room. Finally, save all elements as nodes in allNodes list.
+        NodeHandler nodeHandler = new NodeHandler(this);
+        nodeHandler.initializeNodes();
 
-		
-	}
-	
-	public ArrayList<Node> getNodes(String type){
-		ArrayList<Node> list = new ArrayList<>();
-		for (Node node : allNodes){
-			if (node.type.equals(type)){
-				list.add(node);
-			}
-		}
-		return list;
-	}
+        // Step 2: Create all the legal Edges and save them in allEdges list
+        EdgeHandler edgeHandler = new EdgeHandler(this);
+        edgeHandler.initializeEdges();
+
+        // Step 3: Create input rays from the transmitter and save the in inputRays list.
+        // Also removes edges that will not be used in the simulation
+        RadiationHandler radiationHandler = new RadiationHandler(this);
+        boolean transmitterBlocked = radiationHandler.createInputRays();
+        if (transmitterBlocked) {
+            graphCreationAborted = true;
+            System.out.println("Transmitter Blocked. Graph Creation Aborted");
+            return;
+        }
+
+        // Step 4: Simulate EM functions and save them in routingTable list
+        // Access output distribution given node,mode and input Edge with
+        // key = node.rTableIndex + edge.rTableKey * node.numModes + modeId
+        ModeHandler modeHandler = new ModeHandler(this);
+        modeHandler.initializeRoutingTables();
 
 
+    }
 
-	
+    public boolean areOnSameWall(Node node1, Node node2) {
+
+        if (node1 instanceof Tile tile1 && node2 instanceof Tile tile2) {
+            return VectorOperator.codirectional(tile1.getN(), tile2.getN());
+        }
+
+        return false;
+
+    }
+
+    public ArrayList<Tile> getTiles() {
+        ArrayList<Tile> list = new ArrayList<>();
+        for (Node node : allNodes) {
+            if (node.getType().equals("Tile")) {
+                list.add((Tile) node);
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Node> getReceivers() {
+        ArrayList<Node> list = new ArrayList<>();
+        for (Node node : allNodes) {
+            if (node.getType().equals("Rx")) {
+                list.add(node);
+            }
+        }
+        return list;
+    }
+
+    public Node getTx() {
+        for (Node node : allNodes) {
+            if (node.getType().equals("Tx")) return node;
+        }
+        return null;
+    }
+
+
 }
 	
 

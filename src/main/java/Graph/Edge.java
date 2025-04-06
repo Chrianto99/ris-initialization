@@ -1,89 +1,103 @@
 package Graph;
-import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.List;
 
 import Node.*;
+
 public class Edge {
 
-	public int idx;
-	public int start_idx;
-	public int end_idx;
-	public double length;
-	public double pathLoss;
-	public boolean blocked;
-	public int blockPosition;
-	
-	public transient Node start;
-	public transient Node end;
-	public transient Integer weight;
-	public transient int opacity;
-	
-	
-	public Edge(Node start,Node end,int idx,double length) {
-		weight = 1;
-		opacity = 128;
-		this.start = start;
-		this.end = end;
-		this.idx = idx;
-		this.length = length;
-		this.start_idx = start.idx;
-		this.end_idx = end.idx;
-		
-	}
-	
-	public boolean isParallel(Edge e) {
-		Node start = e.start;
-		Node end = e.end;
-		
-		if (this.start.equals(end) && this.end.equals(start)) {
-			return true;
-		}
-		
-		return false;
-		
-	}
-	
-	public Edge clone(){
-		
-		Edge e = new Edge(this.start,this.end,this.idx,this.length);
-		e.weight = this.weight;
-		return e;
-		
-	}
-	
-	public void print() {
-		
-		System.out.print("[L" + idx);
-	
-		System.out.print("--->" + weight);
-		System.out.println();
-		
-		
-	}
+    private int id;
+    private int startNode_id;
+    private int destNode_id;
+    private double length;
+    private double pathLoss;
+    transient private int rTableKey;
+    private double[] vector;
+    private transient Node startNode;
+    private transient Node destNode;
 
-	
-	public void drawArrow(Graphics2D g2,int x , int y, double angle,double arrowAngle,int length) {
-		
-		double angle1 = angle + arrowAngle + Math.PI;
-		
-		
-		int x1 = x + (int)(Math.cos(angle1)*length);
-		int y1 = y + (int)(Math.sin(angle1)*length);
-		g2.drawLine(x, y, x1, y1);
-		
-		double angle2 = angle1 - 2*arrowAngle;
-		int x2 = x + (int)(Math.cos(angle2)*length);
-		int y2 = y + (int)(Math.sin(angle2)*length);
-		g2.drawLine(x, y, x2, y2);
-		
-		g2.drawLine(x1,y1,x2,y2);
-		
-				
-		
-		
-		
-		
-	}
+
+    public Edge(Node start, Node end, int idx, double length) {
+        this.startNode = start;
+        this.destNode = end;
+        this.id = idx;
+        this.length = length;
+        this.startNode_id = start.getId();
+        this.destNode_id = end.getId();
+        vector = new double[3];
+
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getStartNode_id() {
+        return startNode_id;
+    }
+
+    public void setStartNode_id(int startNode_id) {
+        this.startNode_id = startNode_id;
+    }
+
+    public int getDestNode_id() {
+        return destNode_id;
+    }
+
+    public void setDestNode_id(int destNode_id) {
+        this.destNode_id = destNode_id;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+    }
+
+    public double getPathLoss() {
+        return pathLoss;
+    }
+
+    public void setPathLoss(double pathLoss) {
+        this.pathLoss = pathLoss;
+    }
+
+    public int getRTableKey() {
+        return rTableKey;
+    }
+
+    public void setRTableKey(int rTableKey) {
+        this.rTableKey = rTableKey;
+    }
+
+    public double[] getVector() {
+        return vector;
+    }
+
+    public void setVector(double[] vector) {
+        this.vector = vector;
+    }
+
+    public Node getStartNode() {
+        return startNode;
+    }
+
+    public void setStartNode(Node startNode) {
+        this.startNode = startNode;
+    }
+
+    public Node getDestNode() {
+        return destNode;
+    }
+
+    public void setDestNode(Node destNode) {
+        this.destNode = destNode;
+    }
+
 
 }

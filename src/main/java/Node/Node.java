@@ -1,50 +1,89 @@
 package Node;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.util.ArrayList;
 
-import Propagation.*;
+import Graph.Edge;
 
 public class Node {
-	
-	public Integer idx;
-	public String type;
-	public ArrayList<Double> cumulativeDistribution;
-	public ArrayList<Ray> rays;
-	public boolean isActive;
-	public double x,y,z;
-	public double size;
-	public transient double[] normalVector = new double[]{0,0,0};
-	public transient int wall_idx;
-	public transient int activeMode;
-	public transient boolean[] LOSt,LOSris;
-	public transient boolean LOSr;
-	public transient double Gt,Gr;
-	public transient double transmitPower;
-	public transient ArrayList<Integer> allInputLinks;
-	public transient ArrayList<Integer> allOutputLinks;
 
-	
-	public Node() {
+    protected int id;
+    protected String type;
+    private double[] position;
+    private int rTableIndex;
+    private int numberOfModes;
+    protected transient ArrayList<Edge> inputEdges;
+    protected transient ArrayList<Edge> outputEdges;
 
-						
-	}
-	
-	public void setPosition(double x, double y,double z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		
-		
-	}
-	
-	public void print() {
-		
-		System.out.print("(" + type + "," + wall_idx + "," + idx + ")");
-		System.out.println();
-		
-	}
+    public Node() {
 
-	
+    }
+
+    public Node(String type) {
+        this.type = type;
+        inputEdges = new ArrayList<>();
+        outputEdges = new ArrayList<>();
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setPosition(double[] position) {
+        this.position = position;
+
+    }
+
+    public double[] getPosition() {
+        return position;
+    }
+
+    public int getNumberOfModes() {
+        return numberOfModes;
+    }
+
+    public void setNumberOfModes(int numberOfModes) {
+        this.numberOfModes = numberOfModes;
+    }
+
+    public int getrTableIndex() {
+        return rTableIndex;
+    }
+
+    public void setrTableIndex(int rTableIndex) {
+        this.rTableIndex = rTableIndex;
+    }
+
+
+
+    public ArrayList<Edge> getInputEdges() {
+        return inputEdges;
+    }
+
+    public void setInputEdges(ArrayList<Edge> inputEdges) {
+        this.inputEdges = inputEdges;
+    }
+
+    public ArrayList<Edge> getOutputEdges() {
+        return outputEdges;
+    }
+
+    public void setOutputEdges(ArrayList<Edge> outputEdges) {
+        this.outputEdges = outputEdges;
+    }
 }
+
+
+
