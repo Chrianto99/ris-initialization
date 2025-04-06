@@ -94,6 +94,16 @@ indexKey = tile.rTablePos + inputEdge.rTableKey * tile.numberOfModes + modeId;
 ---
 
 Final output Graph Object 
+public class Graph {
+
+    List<Edge> allEdges = new ArrayList<>();
+    List<Node> allNodes = new ArrayList<>();
+    List<Ray> inputRays = new ArrayList<>();
+    List<double[]> routingTables = new ArrayList<>();
+    TxConfig txConfig;
+    TileConfig tileConfig;
+    Room room;
+}
 
 
 
