@@ -14,14 +14,14 @@ public class Graph {
 
     public List<Edge> allEdges = new ArrayList<>();
     public List<Node> allNodes = new ArrayList<>();
-    transient public List<Ray> inputRays = new ArrayList<>();
+    public List<Ray> inputRays = new ArrayList<>();
     public List<double[]> routingTables = new ArrayList<>();
     public TxConfig txConfig;
     public TileConfig tileConfig;
     public Room room;
 
 
-    public transient int numberOfModes = 20;
+    transient public int numberOfModes = 20;
     transient public Random rand;
     transient public boolean graphCreationAborted = false;
 

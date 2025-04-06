@@ -32,50 +32,49 @@ public class RoomHandler {
         Surface left = new Surface();
         left.initializeSurfaceYZ(new double[]{0, roomY}, new double[]{0, roomZ}, 0);
         totalArea += left.getArea();
-        room.getSurfaces().add(left);
+        room.addToSurfaces(left);
 
         // Right wall (x = roomX)
         Surface right = new Surface();
         right.initializeSurfaceYZ(new double[]{0, roomY}, new double[]{0, roomZ}, roomX);
         totalArea += right.getArea();
         VectorOperator.reverseVector(right.getN());
-        room.getSurfaces().add(right);
+        room.addToSurfaces(right);
 
         // Back wall (y = 0)
         Surface back = new Surface();
         back.initializeSurfaceXZ(new double[]{0, roomX}, new double[]{0, roomZ}, 0);
         totalArea += back.getArea();
-        room.getSurfaces().add(back);
+        room.addToSurfaces(back);
 
         // Front wall (y = roomY)
         Surface front = new Surface();
         front.initializeSurfaceXZ(new double[]{0, roomX}, new double[]{0, roomZ}, roomY);
         totalArea += front.getArea();
         VectorOperator.reverseVector(front.getN());
-        room.getSurfaces().add(front);
+        room.addToSurfaces(front);
 
         // Ceiling (z = roomZ)
         Surface ceiling = new Surface();
         ceiling.initializeSurfaceXY(new double[]{0, roomX}, new double[]{0, roomY}, roomZ);
         totalArea += ceiling.getArea();
         VectorOperator.reverseVector(ceiling.getN());
-        room.getSurfaces().add(ceiling);
+        room.addToSurfaces(ceiling);
 
         room.setTotalArea(totalArea);
 
     }
 
-    public void addSpheres() {
+    public void addSpheres(int numSpheres) {
         double roomX = room.getDims()[0], roomY = room.getDims()[1], roomZ = room.getDims()[2];
-        MAX_NUM_SPHERES = (int) Math.floor(Math.sqrt(roomX * roomX + roomY * roomY + roomZ * roomZ));
         MAX_SPHERE_RADIUS = Math.sqrt(roomX * roomX + roomY * roomY + roomZ * roomZ) / 5;
 
-        for (int i = 0; i < MAX_NUM_SPHERES; i++) {
+        for (int i = 0; i < numSpheres; i++) {
 
             double[] position = new double[]{rand.nextDouble(roomX), rand.nextDouble(roomY), rand.nextDouble(roomZ)};
             double radius = rand.nextDouble(MAX_SPHERE_RADIUS);
 
-            room.getObstacles().add(new Sphere(position, radius));
+            room.addToObstacles(new Sphere(position, radius));
 
         }
 

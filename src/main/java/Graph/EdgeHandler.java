@@ -88,8 +88,8 @@ public class EdgeHandler {
         calculatePathLoss(newEdge, startNode); // Precalculate Path Loss only for product of Distances
 
         g.allEdges.add(newEdge);
-        startNode.getOutputEdges().add(newEdge);
-        destNode.getInputEdges().add(newEdge);
+        startNode.addToInputEdges(newEdge);
+        destNode.addToOutputEdges(newEdge);
 
         edgeId++;
 

@@ -37,10 +37,6 @@ public class Node {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public void setPosition(double[] position) {
         this.position = position;
 
@@ -50,39 +46,27 @@ public class Node {
         return position;
     }
 
-    public int getNumberOfModes() {
-        return numberOfModes;
-    }
-
     public void setNumberOfModes(int numberOfModes) {
         this.numberOfModes = numberOfModes;
-    }
-
-    public int getrTableIndex() {
-        return rTableIndex;
     }
 
     public void setrTableIndex(int rTableIndex) {
         this.rTableIndex = rTableIndex;
     }
 
-
-
     public ArrayList<Edge> getInputEdges() {
         return inputEdges;
-    }
-
-    public void setInputEdges(ArrayList<Edge> inputEdges) {
-        this.inputEdges = inputEdges;
     }
 
     public ArrayList<Edge> getOutputEdges() {
         return outputEdges;
     }
 
-    public void setOutputEdges(ArrayList<Edge> outputEdges) {
-        this.outputEdges = outputEdges;
-    }
+    public void addToInputEdges(Edge edge){inputEdges.add(edge);}
+
+    public void addToOutputEdges(Edge edge){outputEdges.add(edge);}
+
+
 }
 
 

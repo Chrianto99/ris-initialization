@@ -21,10 +21,11 @@ public class Main {
 
 
         double[] roomDims = new double[]{15, 10, 5}; // Room dimensions x,y,z
+        int numSpheres = 10;
         double pathLossExponent = 3;
         RoomHandler roomHandler = new RoomHandler(); // Handles room creation (walls and obstacles)
         roomHandler.createCuboidRoom(roomDims);
-        roomHandler.addSpheres();
+        roomHandler.addSpheres(numSpheres);
         Room cuboidRoom = roomHandler.getRoom(); // Final room object. Input for graphs creation
 
 

@@ -31,32 +31,12 @@ public class Edge {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getStartNode_id() {
-        return startNode_id;
-    }
-
-    public void setStartNode_id(int startNode_id) {
-        this.startNode_id = startNode_id;
-    }
-
     public int getDestNode_id() {
         return destNode_id;
     }
 
-    public void setDestNode_id(int destNode_id) {
-        this.destNode_id = destNode_id;
-    }
-
     public double getLength() {
         return length;
-    }
-
-    public void setLength(double length) {
-        this.length = length;
     }
 
     public double getPathLoss() {
@@ -65,10 +45,6 @@ public class Edge {
 
     public void setPathLoss(double pathLoss) {
         this.pathLoss = pathLoss;
-    }
-
-    public int getRTableKey() {
-        return rTableKey;
     }
 
     public void setRTableKey(int rTableKey) {
@@ -83,21 +59,7 @@ public class Edge {
         this.vector = vector;
     }
 
-    public Node getStartNode() {
-        return startNode;
-    }
 
-    public void setStartNode(Node startNode) {
-        this.startNode = startNode;
-    }
-
-    public Node getDestNode() {
-        return destNode;
-    }
-
-    public void setDestNode(Node destNode) {
-        this.destNode = destNode;
-    }
 
 
 }

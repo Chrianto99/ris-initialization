@@ -89,16 +89,8 @@ public class Surface {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public double getArea() {
         return area;
-    }
-
-    public void setArea(double area) {
-        this.area = area;
     }
 
     public int getNumberOfTiles() {
@@ -113,80 +105,28 @@ public class Surface {
         return n;
     }
 
-    public void setN(double[] n) {
-        this.n = n;
-    }
-
     public double[] getV() {
         return v;
-    }
-
-    public void setV(double[] v) {
-        this.v = v;
     }
 
     public double[] getU() {
         return u;
     }
 
-    public void setU(double[] u) {
-        this.u = u;
-    }
-
-    public double getA() {
-        return A;
-    }
-
-    public void setA(double A) {
-        this.A = A;
-    }
-
-    public double getB() {
-        return B;
-    }
-
-    public void setB(double B) {
-        this.B = B;
-    }
-
-    public double getC() {
-        return C;
-    }
-
-    public void setC(double C) {
-        this.C = C;
-    }
-
     public double getD() {
         return D;
-    }
-
-    public void setD(double D) {
-        this.D = D;
     }
 
     public double[] getXLims() {
         return xLims;
     }
 
-    public void setXLims(double[] xLims) {
-        this.xLims = xLims;
-    }
-
     public double[] getYLims() {
         return yLims;
     }
 
-    public void setYLims(double[] yLims) {
-        this.yLims = yLims;
-    }
-
     public double[] getZLims() {
         return zLims;
-    }
-
-    public void setZLims(double[] zLims) {
-        this.zLims = zLims;
     }
 
 

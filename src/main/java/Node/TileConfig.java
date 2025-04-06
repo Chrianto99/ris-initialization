@@ -21,27 +21,8 @@ public class TileConfig {
 
     }
 
-    public int getNumElements() {
-        return numElements;
-    }
-
-    public double getElementSpacing() {
-        return elementSpacing;
-    }
-
-    public double getElementGain() {
-        return elementGain;
-    }
-
     public double getMaxGain() {
         return maxGain;
     }
 
-    public double getMaxDim() {
-        return maxDim;
-    }
-
-    public double getWavelength() {
-        return wavelength;
-    }
 }

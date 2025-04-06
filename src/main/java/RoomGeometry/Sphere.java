@@ -15,16 +15,8 @@ public class Sphere extends Obstacle {
         return center;
     }
 
-    public void setCenter(double[] center) {
-        this.center = center;
-    }
-
     public double getRadius() {
         return radius;
-    }
-
-    public void setRadius(double radius) {
-        this.radius = radius;
     }
 
 }

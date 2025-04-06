@@ -32,16 +32,8 @@ public class Room {
         return surfaces;
     }
 
-    public void setSurfaces(List<Surface> surfaces) {
-        this.surfaces = surfaces;
-    }
-
     public List<Obstacle> getObstacles() {
         return obstacles;
-    }
-
-    public void setObstacles(List<Obstacle> obstacles) {
-        this.obstacles = obstacles;
     }
 
     public double[] getDims() {
@@ -64,24 +56,20 @@ public class Room {
         return alpha;
     }
 
-    public void setAlpha(double alpha) {
-        this.alpha = alpha;
-    }
-
     public int getNumReceivers() {
         return numReceivers;
-    }
-
-    public void setNumReceivers(int numReceivers) {
-        this.numReceivers = numReceivers;
     }
 
     public int getNumTiles() {
         return numTiles;
     }
 
-    public void setNumTiles(int numTiles) {
-        this.numTiles = numTiles;
+    public void addToSurfaces(Surface surface){surfaces.add(surface);
+
+    }
+
+    public void addToObstacles(Obstacle obst){obstacles.add(obst);
+
     }
 
 

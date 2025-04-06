@@ -5,7 +5,7 @@ import Node.*;
 
 import java.util.*;
 
-public class DistributionManager {
+public class DistributionHandler {
 
 
     private Graph g;
@@ -14,7 +14,7 @@ public class DistributionManager {
     private static double DIFFUSION_GAIN = 0.05;
 
 
-    public DistributionManager(Graph g) {
+    public DistributionHandler(Graph g) {
         this.g = g;
         thetaPhiArchive = new Hashtable<>();
 
