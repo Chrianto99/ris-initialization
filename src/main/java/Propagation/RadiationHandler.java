@@ -5,7 +5,7 @@ import java.util.*;
 import Node.*;
 import Graph.*;
 
-public class RadiationHandler {git
+public class RadiationHandler {
 
     private Graph g;
 

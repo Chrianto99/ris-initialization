@@ -10,7 +10,7 @@ import Node.*;
 public class ModeHandler {
 
     Graph g;
-    DistributionHandler distributionManager;
+    DistributionManager distributionManager;
     static double DIFFUSION_CHANCE = 0.5;
     int rTableNodePosition = 0;
 
@@ -18,7 +18,7 @@ public class ModeHandler {
     public ModeHandler(Graph g) {
 
         this.g = g;
-        distributionManager = new DistributionHandler(g);
+        distributionManager = new DistributionManager(g);
 
     }
 
