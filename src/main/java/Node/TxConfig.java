@@ -30,4 +30,8 @@ public class TxConfig {
     public double getWavelength() {
         return wavelength;
     }
+
+    public void setNumLobes(int numLobes) {
+        this.numLobes = numLobes;
+    }
 }

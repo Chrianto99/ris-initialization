@@ -22,10 +22,9 @@ public class Room {
 
     }
 
-    public void setParameters(int numTiles, int numReceivers, double alpha) {
+    public void setParameters(int numTiles, int numReceivers) {
         this.numTiles = numTiles;
         this.numReceivers = numReceivers;
-        this.alpha = alpha;
     }
 
     public List<Surface> getSurfaces() {
@@ -73,4 +72,7 @@ public class Room {
     }
 
 
+    public void setAlpha(double alpha) {
+        this.alpha = alpha;
+    }
 }
