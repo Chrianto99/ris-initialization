@@ -5,7 +5,7 @@ import java.util.*;
 import Node.*;
 import Graph.*;
 
-public class RadiationHandler {
+public class RadiationHandler {git
 
     private Graph g;
 
@@ -40,7 +40,6 @@ public class RadiationHandler {
         // proceed to create another graph
 
         if (numLobesCreated < g.txConfig.getNumLobes()) return transmitterBlocked;
-
 
         return !transmitterBlocked;
 
