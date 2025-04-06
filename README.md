@@ -43,6 +43,10 @@ createGraph(Room, TxConfig, TileConfig);
 
 ## ⚙️ Handlers & Responsibilities
 
+### 📌 RoomHandler
+- Function: `createCuboidRoom(dimX,dimY,dimZ)`
+- Handles room walls creation and obstacle placement
+
 ### 📌 NodeHandler
 - Function: `initializeNodes()`
 - Creates and places **Tx**, **Rx**, and **Tiles** in the room.
@@ -68,7 +72,7 @@ Each entry in the routing table describes how a Tile reflects incoming rays to v
 
 ### Format:
 ```
-Tile + inputEdgeID + activeMode → outputDistribution
+Given combination of : tileId || inputEdgeId || activeModeId --> (maps to) --> outputDistribution 
 ```
 
 - `outputDistribution` is a list of `outputEdgeId.gain` values.
@@ -89,6 +93,10 @@ indexKey = tile.rTablePos + inputEdge.rTableKey * tile.numberOfModes + modeId;
 
 ---
 
+Final output Graph Object 
+
+
+
 ## 🧪 Summary
 
 This simulation models wireless propagation in a programmable 3D space with:
@@ -98,7 +106,6 @@ This simulation models wireless propagation in a programmable 3D space with:
 - Smart reflection via software-defined metasurfaces
 - Structured routing for power distribution
 
-Feel free to explore and extend it for your own wireless research or simulation needs!
 
 
 Feel free to explore and extend it for your own wireless research or simulation needs!
