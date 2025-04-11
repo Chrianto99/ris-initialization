@@ -1,18 +1,11 @@
 package Node;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 import Graph.Edge;
 
 public class Tile extends Node {
 
-    private static int NUM_ELEMENTS;
-    private static double ELEMENT_SPACING;
-    private static double ELEMENT_GAIN;
-    private static double MAX_GAIN;
-    private static double MAX_DIM;
-    private static double WAVELENGTH;
 
     private transient double[] n, v, u;
     transient private Hashtable<Edge, double[]> thetaPhiArchive;
@@ -24,14 +17,6 @@ public class Tile extends Node {
         this.type = type;
         thetaPhiArchive = new Hashtable<>();
 
-    }
-
-    public static double getMaxDim() {
-        return MAX_DIM;
-    }
-
-    public static double getWavelength() {
-        return WAVELENGTH;
     }
 
     public double[] getN() {

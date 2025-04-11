@@ -20,7 +20,6 @@ public class Graph {
     public TileConfig tileConfig;
     public Room room;
 
-
     transient public int numberOfModes = 20;
     transient public Random rand;
     transient public boolean graphCreationAborted = false;

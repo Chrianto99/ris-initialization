@@ -25,4 +25,11 @@ public class TileConfig {
         return maxGain;
     }
 
+    public double getMaxDim(){
+        return maxDim;
+    }
+
+    public double getWavelength(){
+        return wavelength;
+    }
 }

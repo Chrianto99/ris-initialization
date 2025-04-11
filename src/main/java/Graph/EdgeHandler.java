@@ -83,15 +83,13 @@ public class EdgeHandler {
     public void createEdge(Node startNode, Node destNode) {
 
         double length = VectorOperator.distance(startNode.getPosition(), destNode.getPosition());
-        Edge newEdge = new Edge(startNode, destNode, edgeId, length);
+        Edge newEdge = new Edge(startNode, destNode, edgeId++, length);
         newEdge.setVector(VectorOperator.calculateVector(startNode.getPosition(), destNode.getPosition()));
         calculatePathLoss(newEdge, startNode); // Precalculate Path Loss only for product of Distances
 
         g.allEdges.add(newEdge);
-        startNode.addToInputEdges(newEdge);
-        destNode.addToOutputEdges(newEdge);
-
-        edgeId++;
+        startNode.addToOutputEdges(newEdge);
+        destNode.addToInputEdges(newEdge);
 
     }
 

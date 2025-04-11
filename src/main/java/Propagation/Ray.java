@@ -1,5 +1,7 @@
 package Propagation;
 
+import Graph.Edge;
+
 import java.util.ArrayList;
 
 public class Ray {
@@ -10,16 +12,19 @@ public class Ray {
     private ArrayList<Integer> edges;
 
 
-    public Ray(double total_power, double length, Integer edge_id, int nodeIdx) {
+    public Ray(double totalPower, Edge edge, int nodeId) {
 
-        this.power = total_power;
-        this.length = length;
-        this.currentNode_id = nodeIdx;
+        this.power = totalPower;
+        this.length = edge.getLength();
+        this.currentNode_id = nodeId;
         edges = new ArrayList<>();
-        edges.add(edge_id);
+        edges.add(edge.getId());
 
 
     }
+
+
+
 
 
 }

@@ -27,7 +27,9 @@ public class RadiationHandler {
 
             outputEdges.remove(edgePicked);
 
-            Ray newRay = new Ray(g.txConfig.getPower() * edgePicked.getPathLoss(), edgePicked.getLength(), edgePicked.getId(), edgePicked.getDestNode_id());
+            double rayPower = g.txConfig.getPower() * edgePicked.getPathLoss();
+
+            Ray newRay = new Ray(rayPower, edgePicked, edgePicked.getDestNode_id());
             g.inputRays.add(newRay);
             numLobesCreated++;
 

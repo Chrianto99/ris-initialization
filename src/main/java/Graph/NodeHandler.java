@@ -166,7 +166,7 @@ public class NodeHandler {
             if (g.areOnSameWall(newNode, node))
                 continue; // If elements are on the same wall,ignore
             double distance = VectorOperator.distance(node.getPosition(), newNode.getPosition());
-            if (distance < 2 * Math.pow(Tile.getMaxDim(), 2) / Tile.getWavelength()) return true;
+            if (distance < 2 * Math.pow(g.tileConfig.getMaxDim(), 2) / g.tileConfig.getWavelength()) return true;
 
         }
         return false;
@@ -177,7 +177,7 @@ public class NodeHandler {
         for (Tile tile : surTiles) {
             double distance = VectorOperator.distance(newTile.getPosition(), tile.getPosition());
 
-            if (distance < Tile.getMaxDim()) return true;
+            if (distance < g.tileConfig.getMaxDim()) return true;
 
         }
         return false;

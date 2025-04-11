@@ -9,7 +9,7 @@ public class Edge {
     private int destNode_id;
     private double length;
     private double pathLoss;
-    transient private int rTableKey;
+    private int rTableKey;
     private double[] vector;
     private transient Node startNode;
     private transient Node destNode;
