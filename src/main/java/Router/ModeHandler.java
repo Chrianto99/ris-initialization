@@ -59,7 +59,9 @@ public class ModeHandler {
             else
                 distributionManager.diffuse(tile, inputEdge);
 
-            rTableNodePosition++;
+            String key = i + " " + inputEdge.getId();
+
+            g.routingTables.put(key,distributionManager.getDistribution());
 
 
         }

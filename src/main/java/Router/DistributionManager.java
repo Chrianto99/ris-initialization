@@ -20,6 +20,10 @@ public class DistributionManager {
 
     }
 
+    public double[] getDistribution() {
+        return distribution;
+    }
+
 
     public void steer(Tile tile, Edge inputEdge) {
         int mean = 2 * g.room.getNumTiles() / 8;
@@ -52,7 +56,6 @@ public class DistributionManager {
             i++;
         }
 
-        g.routingTables.add(distribution);
 
     }
 
@@ -82,7 +85,7 @@ public class DistributionManager {
             i++;
         }
 
-        g.routingTables.add(distribution);
+
 
 
     }
