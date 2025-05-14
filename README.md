@@ -84,14 +84,9 @@ Given combination of : tileId || inputEdgeId || activeModeId --> (maps to) --> o
 Use the following formula to get the index of a routing table entry:
 
 ```java
-indexKey = tile.rTablePos + inputEdge.rTableKey * tile.numberOfModes + modeId;
+String Key = inputEdge.id + " " + activeModeId
 ```
 
-- `rTablePos` → base index for the tile global index in routing Table . Defined during routing table creation 
-- `rTableKey` → unique index for the input edge. Defined during routing table creation 
-- `modeId` → selected electromagnetic id function id 
-
----
 
 Final output Graph Object 
 public class Graph {
